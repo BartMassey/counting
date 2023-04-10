@@ -20,10 +20,10 @@ impl RangePl {
         let range_len = (self.end - self.next) as usize;
         let len = range_len.min(buffer.len());
 
-        for i in 0..len {
-            buffer[i] = self.next as u64;
-            self.next += 1;
+        for (i, b) in buffer[..len].iter_mut().enumerate() {
+            *b = (start + i) as u64;
         }
+        self.next += len;
 
         len
   }
